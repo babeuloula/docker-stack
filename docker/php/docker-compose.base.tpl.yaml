@@ -5,6 +5,7 @@
             dockerfile: docker/php/Dockerfile
             args:
                 ENV: "${ENV}"
+                TZ: "${TZ}"
                 UID: "${DOCKER_UID}"
                 SYMFONY_VERSION: "${SYMFONY_VERSION}"
         volumes:
