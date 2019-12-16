@@ -1,0 +1,7 @@
+    nginx:
+        build:
+            context: ..
+            dockerfile: docker/nginx/Dockerfile
+        volumes:
+            - ../public:/var/www/html/public
+        restart: unless-stopped

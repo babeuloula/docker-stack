@@ -1,0 +1,8 @@
+
+    mysql:
+        env_file:
+            - .env
+        image: mysql:5.7
+        restart: unless-stopped
+        volumes:
+            - mysql:/var/lib/mysql
