@@ -1,0 +1,12 @@
+
+    php:
+        build:
+            context: ..
+            dockerfile: docker/php/Dockerfile
+            args:
+                ENV: "${ENV}"
+                UID: "${DOCKER_UID}"
+                SYMFONY_VERSION: "${SYMFONY_VERSION}"
+        volumes:
+            - ..:/var/www/html
+        restart: unless-stopped
