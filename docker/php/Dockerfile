@@ -1,20 +1,19 @@
-FROM php:7.4-fpm
+FROM php:7.4-fpm-alpine3.10
 
 RUN \
-       apt-get update \
-    && apt-get install -y --fix-missing \
-        apt-utils \
-        gnupg \
-        vim \
-        unzip \
+    apk add --update --no-cache \
+        bash \
+        bash-completion \
+        curl \
+        openssl \
         git \
+        make \
+        vim \
+        nano \
+        gnupg \
+        unzip \
         wget \
-    && echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
-    && echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
-    && curl -sS --insecure https://www.dotdeb.org/dotdeb.gpg | apt-key add - \
-    && apt-get update \
-    && apt-get install -y \
-        zlib1g-dev \
+        zlib-dev \
         libzip-dev \
     && docker-php-ext-configure opcache --enable-opcache \
     && docker-php-ext-install zip pdo_mysql opcache
@@ -22,13 +21,13 @@ RUN \
 # Setting up PHP
 ARG ENV
 COPY "docker/php/${ENV}/config/opcache.ini" /usr/local/etc/php/conf.d/opcache.ini
-RUN echo "date.timezone = Europe/Paris" > /usr/local/etc/php/conf.d/timezone.ini
+ARG TZ
+RUN echo "date.timezone = ${TZ}" > /usr/local/etc/php/conf.d/timezone.ini
 
 # Install composer
 RUN \
     curl -sl https://getcomposer.org/composer.phar -o /usr/local/bin/composer; \
-    chmod +x /usr/local/bin/composer; \
-    composer global require hirak/prestissimo;
+    chmod +x /usr/local/bin/composer;
 
 # Download & Install Symfony binary
 ARG SYMFONY_VERSION
@@ -40,15 +39,19 @@ RUN \
 
 ARG UID
 RUN \
-    useradd -ms /bin/bash --uid ${UID} docker; \
-    usermod -a -G docker docker; \
-    chown -R docker /var/www/html;
+    apk add --no-cache --virtual .build-deps shadow; \
+    mkdir -p /var/www/html; \
+    adduser -D -s /bin/bash -u ${UID} docker; \
+    chown -R docker /var/www/html; \
+    apk del --no-network .build-deps;
 
-COPY docker/php/.bashrc /home/docker/.bashrc
-
-WORKDIR /var/www/html
+COPY docker/php/.bashrc /home/www-data/.bashrc
 
 USER docker
+
+RUN composer global require hirak/prestissimo;
+
+WORKDIR /var/www/html
 
 # Setting up git
 RUN \
