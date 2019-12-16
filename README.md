@@ -10,7 +10,10 @@ and [PHP](https://www.php.net/) 7.4 FPM. Composer is also installed by
 default with PHP.
 
 With this script, you can also install [MySQL](https://www.mysql.com/)
-5.7 and Symfony.
+8.0 and Symfony.
+
+If you set `ENV` to `dev`, you can connect to your database with
+[Adminer](https://www.adminer.org/).
 
 If you choose to install MySQL and Symfony,
 [Doctrine2](https://www.doctrine-project.org/) will be directly install.
@@ -23,5 +26,3 @@ You just have to clone this repository and execute `install.sh` from
 ## Roadmap
 
 - Replace `php:7.4-fpm` by `7.4-fpm-alpine3.10`
-- Setting up HTTP2
-- Use MySQL 8 instead of 5.7 

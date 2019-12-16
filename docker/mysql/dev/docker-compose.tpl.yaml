@@ -2,7 +2,7 @@
             - "${MYSQL_PORT:-3310}:3306"
 
     adminer:
-        image: adminer
+        image: adminer:latest
         restart: unless-stopped
         ports:
             - "${ADMINER_PORT:-8012}:8080"
