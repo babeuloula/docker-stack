@@ -45,7 +45,7 @@ RUN \
     chown -R docker /var/www/html; \
     apk del --no-network .build-deps;
 
-COPY docker/php/.bashrc /home/www-data/.bashrc
+COPY docker/php/.bashrc /home/docker/.bashrc
 
 USER docker
 
