@@ -71,6 +71,10 @@ if [[ "none" != "${SYMFONY_VERSION}" ]]; then
 fi
 
 if [[ "dev" == "${ENV}" ]]; then
+    if [[ "localhost" != "${HTTP_HOST}" ]]; then
+        add_host "${HTTP_HOST}"
+    fi
+
     block_success "Environment is started, you can go to http://${HTTP_HOST}:${HTTP_PORT}"
 else
     block_success "Environment is started!"
