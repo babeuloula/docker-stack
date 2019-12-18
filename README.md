@@ -72,7 +72,7 @@ This variable will create a new entry in `/etc/hosts` to allow you to
 access your environnement with you web browser. If you don't want to add
 an entry, just say `localhost`.
 
-- `HTTP_PORT` (default: `8888`) (`ENV=dev` only)
+- `HTTP_PORT` (default: `8888`) **(`ENV=dev` only)**
 
 Use to prevent conflicts with your other stacks.
 
