@@ -66,21 +66,11 @@ function ask_value() {
     echo "${value}"
 }
 
-function exec_sudo() {
-    local cmd=$1
-
-    if [[ -z $(which sudo) ]]; then
-        $cmd
-    else
-        sudo $cmd
-    fi
-}
-
 function add_host() {
     local host=$1
 
     if [[ $(grep -c ${host} /etc/hosts) -eq 0 ]]; then
-        exec_sudo '/bin/sh -c "echo \"127.0.0.1 ${host}\" >> /etc/hosts"'
+        sudo /bin/sh -c "echo \"127.0.0.1 ${host}\" >> /etc/hosts"
     fi
 }
 
