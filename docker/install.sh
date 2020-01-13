@@ -2,6 +2,10 @@
 
 set -e
 
+readonly DOCKER_PATH=$(dirname $(realpath $0))
+
+cd ${DOCKER_PATH};
+
 . ./lib/functions.sh
 
 block_info "Welcome to your Docker stack installer!"
@@ -49,7 +53,7 @@ docker-compose up -d
 
 if [[ "none" != "${SYMFONY_VERSION}" ]]; then
     if [[ ! -f "../bin/console" ]]; then
-        exec_php "symfony" "new symfony_tmp --version ${SYMFONY_VERSION}"
+        exec_php "symfony" "new --dir=/symfony_tmp --version ${SYMFONY_VERSION}"
 
         mv ../symfony_tmp/.env ../
         mv ../symfony_tmp/.gitignore ../
@@ -69,6 +73,8 @@ if [[ "none" != "${SYMFONY_VERSION}" ]]; then
         fi
     fi
 fi
+
+delete_dot_git
 
 if [[ "dev" == "${ENV}" ]]; then
     if [[ "localhost" != "${HTTP_HOST}" ]]; then
