@@ -23,6 +23,10 @@ If you choose to install MySQL and Symfony,
 You just have to clone this repository and execute `install.sh` from
 `docker` directory.
 
+```bash
+./docker/install.sh
+```
+
 ## .env variables
 
 - `ENV` (default: `dev`)

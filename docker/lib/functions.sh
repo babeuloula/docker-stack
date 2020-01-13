@@ -183,3 +183,11 @@ function exec_php() {
 
     docker-compose exec --user "${user}" php $1 $2
 }
+
+function delete_dot_git() {
+    local delete=$(ask_value "Doo you want to delete .git folder ? ${YELLOW}[yes/no]${CYAN}" "yes")
+
+    if [[ "yes" == "${delete}" ]]; then
+        rm -rf ../.git
+    fi
+}
