@@ -185,7 +185,7 @@ function exec_php() {
 }
 
 function delete_dot_git() {
-    local delete=$(ask_value "Doo you want to delete .git folder ? ${YELLOW}[yes/no]${CYAN}" "yes")
+    local delete=$(ask_value "Do you want to delete .git folder ? ${YELLOW}[yes/no]${CYAN}" "yes")
 
     if [[ "yes" == "${delete}" ]]; then
         rm -rf ../.git
