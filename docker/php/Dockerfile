@@ -26,7 +26,7 @@ RUN echo "date.timezone = ${TZ}" > /usr/local/etc/php/conf.d/timezone.ini
 
 # Install composer
 RUN \
-    curl -sl https://getcomposer.org/composer.phar -o /usr/local/bin/composer; \
+    curl -sl https://getcomposer.org/composer-stable.phar -o /usr/local/bin/composer; \
     chmod +x /usr/local/bin/composer;
 
 # Download & Install Symfony binary
