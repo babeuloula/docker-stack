@@ -5,7 +5,7 @@ A script to simplify creation for a docker stack with Symfony and MySQL.
 This script will create a custom `docker-compose.yaml` in order to
 create your own stack.
 
-By default, this stack works with [NGINX](https://www.nginx.com/) 1.17.6
+By default, this stack works with [NGINX](https://www.nginx.com/) 1.19.2
 and [PHP](https://www.php.net/) 7.4 FPM. Composer is also installed by
 default with PHP.
 
