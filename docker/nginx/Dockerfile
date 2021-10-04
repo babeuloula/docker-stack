@@ -1,4 +1,4 @@
-FROM nginx:1.19.2-alpine
+FROM nginx:1.21.3-alpine
 
 COPY docker/nginx/config/vhost.conf /etc/nginx/conf.d/default.conf
 
