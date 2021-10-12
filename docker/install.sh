@@ -53,7 +53,7 @@ docker-compose up -d
 
 if [[ "none" != "${SYMFONY_VERSION}" ]]; then
     if [[ ! -f "../bin/console" ]]; then
-        exec_php "symfony" "new --dir=/symfony_tmp --version ${SYMFONY_VERSION}"
+        exec_php "symfony" "new --dir=./symfony_tmp --version ${SYMFONY_VERSION}"
 
         mv ../symfony_tmp/.env ../
         mv ../symfony_tmp/.gitignore ../

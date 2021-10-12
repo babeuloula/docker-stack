@@ -26,7 +26,7 @@ RUN echo "date.timezone = ${TZ}" > /usr/local/etc/php/conf.d/timezone.ini
 
 # Install composer
 RUN \
-    curl -sl https://getcomposer.org/composer-stable.phar -o /usr/local/bin/composer; \
+    curl -sl https://getcomposer.org/composer-2.phar -o /usr/local/bin/composer; \
     chmod +x /usr/local/bin/composer;
 
 # Download & Install Symfony binary
@@ -48,8 +48,6 @@ RUN \
 COPY docker/php/.bashrc /home/docker/.bashrc
 
 USER docker
-
-RUN composer global require hirak/prestissimo;
 
 WORKDIR /var/www/html
 
